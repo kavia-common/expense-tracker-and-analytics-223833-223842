@@ -1,82 +1,44 @@
-# Lightweight React Template for KAVIA
+# Expense Tracker Frontend
 
-This project provides a minimal React template with a clean, modern UI and minimal dependencies.
+Modern, lightweight React app (Ocean Professional style) with routing, services, and mock API fallback.
 
-## Features
+## Quick start
 
-- **Lightweight**: No heavy UI frameworks - uses only vanilla CSS and React
-- **Modern UI**: Clean, responsive design with KAVIA brand styling
-- **Fast**: Minimal dependencies for quick loading times
-- **Simple**: Easy to understand and modify
+- Install dependencies: `npm install`
+- Run locally: `npm start`
+- Run tests: `npm test`
+- Build: `npm run build`
 
-## Getting Started
+## Environment
 
-In the project directory, you can run:
+Copy `.env.example` to `.env` and set values:
 
-### `npm start`
+- `REACT_APP_API_BASE` (or `REACT_APP_BACKEND_URL`) — Backend REST base URL
+- `REACT_APP_FEATURE_FLAGS` — JSON e.g. `{"useMockApi":true}` to enable mock fallback in non-production
+- Other optional vars included in `.env.example`
 
-Runs the app in development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Environment is loaded via `src/config/env.js`.
 
-### `npm test`
+## Mock API
 
-Launches the test runner in interactive watch mode.
+When `REACT_APP_FEATURE_FLAGS={"useMockApi":true}` and not production, the app:
+- Attempts real backend first, and if it fails, falls back to mock.
+- If no backend URL is configured, uses mock directly.
 
-### `npm run build`
+Mock endpoints implemented for:
+- GET `/api/expenses`
+- POST `/api/expenses`
+- DELETE `/api/expenses/:id`
+- GET `/api/categories`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Structure
 
-## Customization
+- `src/config/env.js` — env and feature flags
+- `src/services/*` — API client, domain services, mock API
+- `src/components/*` — Layout, form, list, summary
+- `src/pages/*` — Dashboard, Expenses, Analytics, Settings
+- `src/App.js` — Routes + theme toggle
 
-### Colors
+## Styling
 
-The main brand colors are defined as CSS variables in `src/App.css`:
-
-```css
-:root {
-  --kavia-orange: #E87A41;
-  --kavia-dark: #1A1A1A;
-  --text-color: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --border-color: rgba(255, 255, 255, 0.1);
-}
-```
-
-### Components
-
-This template uses pure HTML/CSS components instead of a UI framework. You can find component styles in `src/App.css`. 
-
-Common components include:
-- Buttons (`.btn`, `.btn-large`)
-- Container (`.container`)
-- Navigation (`.navbar`)
-- Typography (`.title`, `.subtitle`, `.description`)
-
-## Learn More
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Ocean Professional theme with subtle gradients, rounded corners, and accessible contrasts in `src/components/layout.css`. Global theme variables in `src/App.css`.
